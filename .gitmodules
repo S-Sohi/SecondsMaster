@@ -13,3 +13,6 @@
 [submodule "aw-watcher-window"]
 	path = aw-watcher-window
 	url = https://github.com/S-Sohi/aw-watcher-window.git
+[submodule "aw-qt"]
+	path = aw-qt
+	url = https://github.com/S-Sohi/aw-qt.git
