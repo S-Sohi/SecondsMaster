@@ -18,6 +18,8 @@ function get_platform() {
         _platform="windows";
     elif [[ $_platform == "mingw"* ]]; then
         _platform="windows";
+    elif [[ $_platform == "cygwin"* ]]; then
+        _platform="windows";
     elif [[ $_platform == "linux" ]]; then
         # Nothing to do
         true;
@@ -46,7 +48,7 @@ echo "Platform: $platform, arch: $arch, version: $version"
 function build_zip() {
     echo "Zipping executables..."
     pushd dist;
-    filename="activitywatch-${version}-${platform}-${arch}.zip"
+    filename="secondsmaster-${version}-${platform}-${arch}.zip"
     echo "Name of package will be: $filename"
 
     if [[ $platform == "windows"* ]]; then
@@ -59,7 +61,7 @@ function build_zip() {
 }
 
 function build_setup() {
-    filename="activitywatch-${version}-${platform}-${arch}-setup.exe"
+    filename="secondsmaster-${version}-${platform}-${arch}-setup.exe"
     echo "Name of package will be: $filename"
 
     innosetupdir="/c/Program Files (x86)/Inno Setup 6"
@@ -70,7 +72,7 @@ function build_setup() {
 
     # Windows installer version should not include 'v' prefix, see: https://github.com/microsoft/winget-pkgs/pull/17564
     version_no_prefix="$(echo $version | sed -e 's/^v//')"
-    env AW_VERSION=$version_no_prefix "$innosetupdir/iscc.exe" scripts/package/activitywatch-setup.iss
+    env AW_VERSION=$version_no_prefix "$innosetupdir/ISCC.exe" scripts/package/activitywatch-setup.iss
     mv dist/activitywatch-setup.exe dist/$filename
     echo "Setup built!"
 }
