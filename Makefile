@@ -44,6 +44,8 @@ build:
 #	needed due to https://github.com/pypa/setuptools/issues/1963
 #	would ordinarily be specified in pyproject.toml, but is not respected due to https://github.com/pypa/setuptools/issues/1963
 	pip install 'setuptools>49.1.1'
+	pip install poetry
+	pip install pyinstaller
 	@if [ "$(SKIP_SERVER_RUST)" = "false" ]; then \
 		if (which cargo); then \
 			echo 'Rust found!'; \
