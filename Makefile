@@ -11,7 +11,7 @@
 
 SHELL := /usr/bin/env bash
 
-SUBMODULES := aw-qt aw-server-rust aw-watcher-afk aw-watcher-window
+SUBMODULES := aw-qt aw-watcher-afk aw-watcher-window
 
 # Exclude aw-server-rust if SKIP_SERVER_RUST is true
 ifeq ($(SKIP_SERVER_RUST),true)
@@ -40,7 +40,7 @@ TYPECHECKABLES := $(foreach dir,$(SUBMODULES),$(call has_target,$(dir),typecheck
 # What it does:
 #  - Installs all the Python modules
 #  - Builds the web UI and bundles it with aw-server
-build: aw-core/.git
+build:
 #	needed due to https://github.com/pypa/setuptools/issues/1963
 #	would ordinarily be specified in pyproject.toml, but is not respected due to https://github.com/pypa/setuptools/issues/1963
 	pip install 'setuptools>49.1.1'
@@ -57,10 +57,10 @@ build: aw-core/.git
 		make --directory=$$module build SKIP_WEBUI=$(SKIP_WEBUI) || { echo "Error in $$module build"; exit 2; }; \
 	done
 #   The below is needed due to: https://github.com/ActivityWatch/activitywatch/issues/173
-	make --directory=aw-client build
-	make --directory=aw-core build
+#	make --directory=aw-client build
+#	make --directory=aw-core build
 #	Needed to ensure that the server has the correct version set
-	python -c "import aw_server; print(aw_server.__version__)"
+#	python -c "import aw_server; print(aw_server.__version__)"
 
 
 # Install
