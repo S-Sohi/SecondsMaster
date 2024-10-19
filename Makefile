@@ -11,7 +11,7 @@
 
 SHELL := /usr/bin/env bash
 
-SUBMODULES := aw-qt aw-watcher-afk aw-watcher-window
+SUBMODULES := aw-qt aw-server-rust aw-watcher-afk aw-watcher-window
 
 # Exclude aw-server-rust if SKIP_SERVER_RUST is true
 ifeq ($(SKIP_SERVER_RUST),true)
